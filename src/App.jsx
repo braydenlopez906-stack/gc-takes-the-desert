@@ -10,7 +10,6 @@ import TheCrib from "./components/TheCrib";
 import TripStatus from "./components/TripStatus";
 import Countdown from "./components/Countdown";
 import Memories from "./components/Memories";
-import Footer from "./components/Footer";
 import Cursor from "./components/Cursor";
 import Intro from "./components/Intro";
 import StickyJoin from "./components/StickyJoin";
@@ -48,7 +47,6 @@ function Site() {
         <Countdown />
         <Memories />
       </main>
-      <Footer />
       <StickyJoin />
       <EasterEggs />
     </div>

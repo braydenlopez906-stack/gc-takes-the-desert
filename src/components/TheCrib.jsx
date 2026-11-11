@@ -40,7 +40,7 @@ export default function TheCrib() {
           <div>
             {houses.length === 0 ? (
               <div className="border-[3px] border-dashed border-ink/45 p-8 text-center bg-paper/40">
-                <p className="poster text-[60px] text-ink/20">NO CRIB</p>
+                <p className="poster text-[60px] text-ink/20">NO AIRBNBS</p>
                 <p className="font-hand text-2xl mt-1">{status === "ready" ? "Nobody's found a place yet. Paste the first Airbnb." : "Loading houses…"}</p>
               </div>
             ) : (
@@ -103,7 +103,7 @@ function AddHouse() {
     <form onSubmit={submit} noValidate className="relative bg-paper border-[3px] border-ink shadow-[10px_10px_0_#2a3cff] p-5 pt-7 -rotate-1 lg:sticky lg:top-6">
       <span className="tape -top-3 left-8 -rotate-6" aria-hidden="true" />
       <p className="pixel text-[11px] text-pink">FOUND A PLACE?</p>
-      <h3 className="poster-wide text-3xl mt-1">Add a crib</h3>
+      <h3 className="poster-wide text-3xl mt-1">Add an Airbnb</h3>
 
       {locked ? (
         <div className="mt-4">
@@ -153,7 +153,7 @@ function HouseCard({ house, index, favorite }) {
   const [imgOk, setImgOk] = useState(Boolean(house.preview_image));
   const [confirming, setConfirming] = useState(false);
   const tilt = ((hash(house.id) % 7) - 3) * 0.8;
-  const title = house.nickname || house.preview_title || `Crib Nº ${index + 1}`;
+  const title = house.nickname || house.preview_title || `Airbnb Nº ${index + 1}`;
   const perPerson = house.est_total_price != null && house.guests ? house.est_total_price / house.guests : null;
 
   async function heart(e) {

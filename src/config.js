@@ -22,7 +22,7 @@ export const MEMORIES = [
   { scene: "road", caption: "the drive in. aux privileges revoked", stamp: "'27 4 09" },
   { scene: "crowd", caption: "see you in the desert", stamp: "'27 4 10" },
   { scene: "wristband", caption: "GC field trip", stamp: "'27 4 10" },
-  { scene: "party", caption: "afters at the crib", stamp: "'27 4 10" },
+  { scene: "party", caption: "afters at the airbnb", stamp: "'27 4 10" },
   { scene: "sunset", caption: "bad financial decisions → great memories", stamp: "'27 4 11" },
   { scene: "tent", caption: "front left. always.", stamp: "'27 4 11" },
 ];

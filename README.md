@@ -143,7 +143,6 @@ Use the Supabase dashboard → **Table Editor**:
 
 ## Easter eggs
 
-- Tap the pink "vs." in the headline five times.
 - On a keyboard, type `desert` anywhere on the page (or the Konami code).
 - Tap any pass on the roster to flip it.
 
@@ -159,7 +158,7 @@ src/lib/trip.jsx         loads data, live updates, all actions
 src/lib/device.js        the per-phone token
 src/components/          one file per section + shared UI (ui.jsx)
   Hero, JoinDesk, PassCard, Roster, MostWanted, WeekendWar,
-  TheCrib, TripStatus, Countdown, Memories, Footer,
+  TheCrib, TripStatus, Countdown, Memories,
   Scene (drawn photos), Cursor, Intro, StickyJoin, EasterEggs
 ```
 

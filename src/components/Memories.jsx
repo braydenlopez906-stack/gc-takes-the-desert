@@ -18,7 +18,7 @@ export default function Memories() {
   const tilts = [-6, 4, -3, 7];
 
   return (
-    <section id="memories" aria-labelledby="mem-title" className="relative bg-paper border-t-[3px] border-ink pt-20 sm:pt-28 pb-24 overflow-hidden">
+    <section id="memories" aria-labelledby="mem-title" className="relative bg-paper border-t-[3px] border-ink pt-20 sm:pt-28 pb-32 overflow-hidden">
       <div className="gutter relative mx-auto max-w-6xl">
         <SectionHead id="mem-title" kicker="Pre-memories · not real yet" lines={["THE", <>SCRAPBOOK <Script className="text-pink">'27</Script></>]} />
         <Hand className="mt-4 text-cobalt text-2xl max-w-[30ch]">future photos, drawn in advance. we'll swap in the real ones after.</Hand>

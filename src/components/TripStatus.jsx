@@ -57,9 +57,9 @@ export default function TripStatus() {
       remark: weekendLeader ? `${tally[weekendLeader]} OF ${totalVotes}` : "VOTE NOW",
       tone: weekendLeader ? "text-[#7dff9b]" : "text-sunset",
     },
-    { label: "CRIBS FOUND", value: pad(houses.length), remark: fav ? "FAVE PICKED" : houses.length ? "HEART ONE" : "SEARCHING", tone: "text-tape" },
+    { label: "AIRBNBS FOUND", value: pad(houses.length), remark: fav ? "FAVE PICKED" : houses.length ? "HEART ONE" : "SEARCHING", tone: "text-tape" },
     { label: "TOP ARTIST", value: top ? clip(top.name) : "TBA", remark: top ? `${top.votes} VOTE${top.votes === 1 ? "" : "S"}` : "PICK ONE", tone: "text-tape" },
-    { label: "GC FAVORITE", value: fav ? clip(fav.nickname || fav.preview_title || "CRIB") : "TBD", remark: fav ? `${fav.hearts} HEART${fav.hearts === 1 ? "" : "S"}` : "—", tone: "text-tape" },
+    { label: "GC FAVORITE", value: fav ? clip(fav.nickname || fav.preview_title || "AIRBNB") : "TBD", remark: fav ? `${fav.hearts} HEART${fav.hearts === 1 ? "" : "S"}` : "—", tone: "text-tape" },
   ];
 
   const now = new Date();
