@@ -1,7 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
 
-const rawUrl = (import.meta.env.VITE_SUPABASE_URL || "").trim();
-const key = (import.meta.env.VITE_SUPABASE_ANON_KEY || "").trim();
+// Accept values pasted as a whole line from Supabase's setup snippet,
+// e.g. NEXT_PUBLIC_SUPABASE_URL=https://abcd.supabase.co or KEY="sb_publishable_…".
+const clean = (v) =>
+  String(v || "")
+    .trim()
+    .replace(/^export\s+/i, "")
+    .replace(/^[A-Z0-9_]+\s*[=:]\s*/i, "")
+    .replace(/^["'`]|["'`;]$/g, "")
+    .trim();
+
+const rawUrl = clean(import.meta.env.VITE_SUPABASE_URL);
+const key = clean(import.meta.env.VITE_SUPABASE_ANON_KEY);
 
 // Explains a bad setting on the page instead of crashing the whole site.
 function check() {
