@@ -29,7 +29,10 @@ let client = null;
 let problem = check();
 if (!problem) {
   const url = normalize(rawUrl);
+  const host = url ? new URL(url).hostname : "";
   if (!url) problem = `VITE_SUPABASE_URL ("${rawUrl.slice(0, 60)}") isn't a web address. It should look like https://abcd1234.supabase.co.`;
+  else if (/(^|\.)supabase\.com$/.test(host)) problem = `VITE_SUPABASE_URL is the Supabase dashboard link (${rawUrl.slice(0, 80)}). Use the Project URL instead, which looks like https://abcd1234.supabase.co (Supabase → Connect, or Project Settings → Data API).`;
+  else if (!/\.supabase\.co$/.test(host) && !/^(localhost|127\.0\.0\.1)$/.test(host)) problem = `VITE_SUPABASE_URL is ${url}, which isn't a Supabase project address. It should end in .supabase.co.`;
   else {
     try {
       client = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
@@ -42,3 +45,4 @@ if (!problem) {
 export const isConfigured = Boolean(client);
 export const configProblem = problem;
 export const supabase = client;
+export const supabaseHost = client ? new URL(normalize(rawUrl)).hostname : "";

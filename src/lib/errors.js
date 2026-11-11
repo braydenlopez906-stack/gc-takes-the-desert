@@ -1,3 +1,4 @@
+import { supabaseHost } from "./supabase";
 // Turns database error codes into plain sentences.
 const MESSAGES = {
   NAME_TAKEN: "That name's already on the roster.",
@@ -22,6 +23,16 @@ export function errorCode(err) {
 export function errorMessage(err) {
   const code = errorCode(err);
   if (code) return MESSAGES[code];
-  if (/fetch|network|Failed/i.test(err?.message || "")) return "Couldn't reach the server. Check your signal and try again.";
-  return "Something went wrong. Try again.";
+  if (/fetch|network|Failed|Load failed/i.test(err?.message || "")) {
+    return navigator.onLine === false
+      ? "You're offline. Check your signal and try again."
+      : `Couldn't reach the database at ${supabaseHost || "(no address)"}. If that address looks wrong, fix VITE_SUPABASE_URL in Vercel and redeploy. If it looks right, the Supabase project may be paused.`;
+  }
+  if (/Could not find the function|schema cache|does not exist|PGRST202/i.test(`${err?.message} ${err?.code}`)) {
+    return "The database is reachable but isn't set up yet. Run supabase/schema.sql in the Supabase SQL Editor.";
+  }
+  if (/Invalid API key|JWT|apikey|401/i.test(`${err?.message} ${err?.code}`)) {
+    return "Supabase rejected the key. Check VITE_SUPABASE_ANON_KEY in Vercel (use the publishable or anon key) and redeploy.";
+  }
+  return `Something went wrong: ${err?.message || "unknown error"}`;
 }
