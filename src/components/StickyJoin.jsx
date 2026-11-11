@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTrip } from "../lib/trip";
+import { usePlayer } from "../lib/player";
 
 /* Phone-only floating "I'M IN" while you haven't joined and the form is off screen. */
 export default function StickyJoin() {
   const { me, isConfigured } = useTrip();
+  const { current, status } = usePlayer();
   const [past, setPast] = useState(false);
   const [joinVisible, setJoinVisible] = useState(false);
 
@@ -22,7 +24,7 @@ export default function StickyJoin() {
     return () => { window.removeEventListener("scroll", onScroll); io?.disconnect(); };
   }, []);
 
-  const show = isConfigured && !me && past && !joinVisible;
+  const show = isConfigured && !me && past && !joinVisible && !(current && status !== "idle");
   return (
     <AnimatePresence>
       {show && (

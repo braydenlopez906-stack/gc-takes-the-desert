@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check, HelpCircle, RotateCw } from "lucide-react";
 import { pad, hash } from "../lib/format";
+import { PlayButton } from "./Music";
 import { WEEKENDS } from "../config";
 
 const IN_COLORS = [
@@ -65,7 +66,7 @@ export default function PassCard({ person, isMe = false, fresh = false, swing = 
               GC<br />'27<br />✓
             </motion.div>
           )}
-          <div className="mt-auto pt-4 border-t-2 border-current">
+          <div className="mt-auto pt-4 pr-11 border-t-2 border-current">
             <div className="pixel text-[9px] opacity-85">MOST HYPED FOR</div>
             <div className={`${isIn ? "font-script text-[22px]" : "font-hand text-[25px]"} leading-tight [overflow-wrap:anywhere]`}>{person.artist || "TBD"}</div>
           </div>
@@ -86,6 +87,11 @@ export default function PassCard({ person, isMe = false, fresh = false, swing = 
       </button>
 
       <span aria-hidden="true" className="absolute -bottom-3 right-2 pixel text-[9px] flex items-center gap-1 text-dusk"><RotateCw className="w-3 h-3" />TAP</span>
+      {person.artist && !flipped && (
+        <div className="absolute right-3.5 bottom-5 z-20">
+          <PlayButton artist={person.artist} size="sm" tone={isIn ? "tape" : "ink"} />
+        </div>
+      )}
 
       {!isIn && <span aria-hidden="true" className="absolute -right-2 top-12 font-hand text-cobalt text-lg bg-tape px-1.5 rotate-[10deg] z-10 pointer-events-none">c'mon…</span>}
       {isMe && <span aria-hidden="true" className="absolute -left-3 -bottom-4 font-hand text-paper text-lg bg-ink px-2 py-0.5 -rotate-6 z-10 pointer-events-none">← that's you</span>}

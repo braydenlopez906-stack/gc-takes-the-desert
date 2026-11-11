@@ -1,5 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { TripProvider } from "./lib/trip";
+import { PlayerProvider } from "./lib/player";
+import { NowPlaying } from "./components/Music";
 import { ToastProvider, useToast } from "./components/ui";
 import Hero from "./components/Hero";
 import JoinDesk from "./components/JoinDesk";
@@ -48,6 +50,7 @@ function Site() {
         <Memories />
       </main>
       <StickyJoin />
+      <NowPlaying />
       <EasterEggs />
     </div>
   );
@@ -56,12 +59,14 @@ function Site() {
 export default function App() {
   return (
     <TripProvider>
+      <PlayerProvider>
       <ToastProvider>
         <Intro />
         <Cursor />
         <div className="grain" aria-hidden="true" />
         <Site />
       </ToastProvider>
+      </PlayerProvider>
     </TripProvider>
   );
 }

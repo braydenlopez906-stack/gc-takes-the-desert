@@ -6,7 +6,7 @@ const clean = (v) =>
   String(v || "")
     .trim()
     .replace(/^export\s+/i, "")
-    .replace(/^[A-Z0-9_]+\s*[=:]\s*/i, "")
+    .replace(/^[A-Z][A-Z0-9_]*\s*=\s*/i, "")
     .replace(/^["'`]|["'`;]$/g, "")
     .trim();
 

@@ -1,11 +1,18 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Crown } from "lucide-react";
 import { useTrip } from "../lib/trip";
+import { useEffect } from "react";
+import { usePlayer } from "../lib/player";
+import { Equalizer, PlayButton } from "./Music";
 import { Hand, RollingNumber, SectionHead, Script } from "./ui";
 
 /* Chart page from a music magazine: the group's artist picks, merged and ranked. */
 export default function MostWanted() {
   const { lineup, status } = useTrip();
+  const { prefetch, stateFor } = usePlayer();
+  const names = lineup.map((g) => g.name).join("|");
+  // Look songs up ahead of time so a tap can start playing right away.
+  useEffect(() => { if (names) prefetch(names.split("|")); }, [names, prefetch]);
   const reduce = useReducedMotion();
   const [top, ...rest] = lineup;
   const totalPicks = lineup.reduce((n, g) => n + g.votes, 0);
@@ -41,6 +48,12 @@ export default function MostWanted() {
               </div>
               <p className="poster text-pink text-[clamp(110px,34vw,220px)] leading-[.75] mt-4 [-webkit-text-stroke:2px_#fbf1df]" aria-hidden="true">#1</p>
               <h3 className="poster text-[clamp(52px,15vw,120px)] mt-3 [overflow-wrap:anywhere] text-balance">{top.name}</h3>
+              <div className="mt-5 flex items-center gap-3">
+                <PlayButton artist={top.name} size="lg" tone="pink" />
+                <span className="pixel text-[11px] text-tape inline-flex items-center gap-2">
+                  {stateFor(top.name) === "playing" ? <><Equalizer /> PLAYING</> : "TAP TO HEAR THEM"}
+                </span>
+              </div>
               <p className="mt-4 poster-wide text-2xl text-tape">
                 <RollingNumber value={top.votes} /> {top.votes === 1 ? "VOTE" : "VOTES"}
               </p>
@@ -61,9 +74,10 @@ export default function MostWanted() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                    className="group grid grid-cols-[44px_1fr_auto] items-center gap-3 py-3 border-b-2 border-ink/80"
+                    className="group grid grid-cols-[34px_auto_1fr_auto] items-center gap-3 py-3 border-b-2 border-ink/80"
                   >
                     <span className="pixel text-lg text-pink">{String(i + 2).padStart(2, "0")}</span>
+                    <PlayButton artist={g.name} size="sm" tone={stateFor(g.name) === "playing" ? "pink" : "tape"} />
                     <span className="min-w-0">
                       <span className={`block poster-wide [overflow-wrap:anywhere] group-hover:text-cobalt transition-colors ${i < 3 ? "text-[28px] sm:text-[34px]" : "text-[21px]"}`}>{g.name}</span>
                       <span className="block font-hand text-base text-dusk truncate">{g.who.join(", ")}</span>

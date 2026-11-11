@@ -125,6 +125,8 @@ The site can read every table except `attendee_devices`, and it can't write to a
 
 **Live updates.** Every open phone gets a signal through Supabase Realtime whenever anything changes, and refreshes its data. Phones also refresh when the app comes back to the foreground, and every 30 seconds as a backup.
 
+**Song previews.** Tap the play button on any artist (on the GC Most Wanted chart or on a pass) to hear a 30-second preview of one of their songs. `api/song.js` (a Vercel Function) looks the artist up with Apple's free iTunes Search API, so no key or account is needed, and the player links to the full song on Apple Music. If Apple has no match for a name (a typo, or a very small artist), the player says so.
+
 **Link previews.** When someone adds a house, `api/preview.js` (a Vercel Function) fetches the listing page on the server and reads its title and preview image. Airbnb and other sites sometimes block this; when they do, the card shows a drawn desert house instead and everything else works. The function refuses private and local addresses.
 
 ---
@@ -152,10 +154,12 @@ Use the Supabase dashboard → **Table Editor**:
 
 ```
 api/preview.js           link preview function (Vercel)
+api/song.js              song preview lookup (Vercel)
 supabase/schema.sql      the whole database: tables, access rules, functions
 src/config.js            dates, countdown, scrapbook photos
 src/lib/trip.jsx         loads data, live updates, all actions
 src/lib/device.js        the per-phone token
+src/lib/player.jsx       the shared song player
 src/components/          one file per section + shared UI (ui.jsx)
   Hero, JoinDesk, PassCard, Roster, MostWanted, WeekendWar,
   TheCrib, TripStatus, Countdown, Memories,
