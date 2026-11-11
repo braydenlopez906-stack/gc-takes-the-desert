@@ -30,7 +30,7 @@ export default function TheCrib() {
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[repeating-linear-gradient(45deg,transparent_0_22px,rgba(255,106,26,.18)_22px_24px)]" aria-hidden="true" />
       <div className="gutter relative mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHead id="crib-title" kicker={`Desert real estate · ${houses.length} found`} lines={["THE", <>CRIB <Script className="text-sunset">hunt</Script></>]} />
+          <SectionHead id="crib-title" kicker={`Desert real estate · ${houses.length} found`} lines={["AIR", <>BNB <Script className="text-sunset">hunt</Script></>]} />
           <Hand className="text-cobalt text-2xl max-w-[24ch]">paste a link. heart the ones you'd actually sleep in.</Hand>
         </div>
 
