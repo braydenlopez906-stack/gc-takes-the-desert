@@ -1,7 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { TripProvider } from "./lib/trip";
 import { ToastProvider, useToast } from "./components/ui";
-import Ticker from "./components/Ticker";
 import Hero from "./components/Hero";
 import JoinDesk from "./components/JoinDesk";
 import Roster from "./components/Roster";
@@ -38,7 +37,6 @@ function Site() {
   return (
     <div className={golden ? "golden" : ""}>
       <a href="#join" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[99] bg-tape px-3 py-2 border-2 border-ink">Skip to sign-up</a>
-      <Ticker />
       <main>
         <Hero onSunTap={onSunTap} />
         <JoinDesk />
