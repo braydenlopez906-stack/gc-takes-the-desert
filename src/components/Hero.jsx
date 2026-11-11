@@ -9,7 +9,7 @@ export default function Hero({ onSunTap }) {
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const sunY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 140]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
   const collageY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -60]);
 
   const go = (e) => {
@@ -23,17 +23,12 @@ export default function Hero({ onSunTap }) {
 
   return (
     <header ref={ref} className="relative overflow-hidden pt-6 pb-16 sm:pt-10 sm:pb-24">
-      {/* the sun: tap it a few times */}
-      <motion.button
-        type="button"
-        onClick={onSunTap}
-        aria-label="The sun"
-        style={{ y: sunY }}
-        className="absolute z-0 -right-[38vw] top-[34%] w-[118vw] max-w-[760px] aspect-square rounded-full sm:-right-[10%] sm:top-[-4%] sm:w-[62vw]"
-      >
-        <span className="absolute inset-0 rounded-full sun-stripes opacity-90" style={{ WebkitMask: "radial-gradient(circle,#000 69%,transparent 70%)", mask: "radial-gradient(circle,#000 69%,transparent 70%)" }} />
-        <span className="absolute inset-0 rounded-full bg-gradient-to-b from-tape/70 to-pink/60 mix-blend-multiply" style={{ WebkitMask: "radial-gradient(circle,#000 69%,transparent 70%)", mask: "radial-gradient(circle,#000 69%,transparent 70%)" }} />
-      </motion.button>
+      {/* painted desert sky */}
+      <motion.div
+        aria-hidden="true"
+        style={{ y: bgY, backgroundImage: "url(/hero/desert-bg.jpg)" }}
+        className="absolute inset-x-0 -top-[8%] -bottom-[2%] z-0 bg-cover bg-[position:center_bottom] md:bg-[position:center_80%]"
+      />
 
       <div className="gutter relative z-10 mx-auto max-w-6xl grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-center pointer-events-none">
         <div className="pointer-events-auto">
@@ -45,7 +40,7 @@ export default function Hero({ onSunTap }) {
               <motion.span className="block outline-ink" {...line(1)}>RETARDS</motion.span>
             </span>
             <span className="block relative z-10 -my-[.12em] ml-[.15em]" aria-hidden="true">
-              <motion.span className="inline-block font-script normal-case text-pink text-[.6em] tracking-normal [text-shadow:4px_4px_0_#22122e]"
+              <motion.span onClick={onSunTap} className="inline-block cursor-pointer select-none font-script normal-case text-pink text-[.6em] tracking-normal [text-shadow:4px_4px_0_#22122e]"
                 initial={reduce ? false : { scale: 2.4, rotate: -30, opacity: 0 }} animate={{ scale: 1, rotate: -7, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 420, damping: 14, delay: 0.55 }}>vs.</motion.span>
             </span>
@@ -61,10 +56,10 @@ export default function Hero({ onSunTap }) {
               {me ? "MY PASS" : "I'M IN"}
               <ArrowRight className="w-8 h-8 transition-transform group-hover:translate-x-1.5" strokeWidth={3} aria-hidden="true" />
             </a>
-            <a href="#roster" className="font-hand text-2xl underline decoration-wavy decoration-pink underline-offset-[6px]">who's already in?</a>
+            <a href="#roster" className="font-hand text-2xl underline decoration-wavy decoration-pink underline-offset-[6px] bg-paper/85 px-2 py-0.5 -rotate-2">who's already in?</a>
           </motion.div>
 
-          <p className="mt-6 pixel text-[11px] sm:text-xs flex items-center gap-2.5" aria-live="polite">
+          <p className="mt-6 pixel text-[11px] sm:text-xs flex w-fit items-center gap-2.5 bg-paper/85 px-2.5 py-1.5" aria-live="polite">
             <span className="w-2.5 h-2.5 rounded-full bg-pink live-dot" aria-hidden="true" />
             {status === "ready"
               ? ins.length

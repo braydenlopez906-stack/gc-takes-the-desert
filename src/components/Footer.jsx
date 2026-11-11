@@ -10,7 +10,7 @@ export default function Footer() {
           </p>
           <p className="pixel text-[10px] text-paper/60 mt-4">MADE FOR THE GROUP CHAT · NOT AFFILIATED WITH COACHELLA OR GOLDENVOICE</p>
         </div>
-        <Hand className="text-tape text-xl max-w-[22ch]" rotate={-4}>psst. the sun likes being tapped.</Hand>
+        <Hand className="text-tape text-xl max-w-[22ch]" rotate={-4}>psst. the "vs." likes being tapped.</Hand>
       </div>
     </footer>
   );

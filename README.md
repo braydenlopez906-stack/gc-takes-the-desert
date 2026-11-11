@@ -143,7 +143,7 @@ Use the Supabase dashboard → **Table Editor**:
 
 ## Easter eggs
 
-- Tap the sun five times.
+- Tap the pink "vs." in the headline five times.
 - On a keyboard, type `desert` anywhere on the page (or the Konami code).
 - Tap any pass on the roster to flip it.
 
