@@ -70,21 +70,10 @@ export default function Hero({ onSunTap }) {
         </div>
 
         {/* collage */}
-        <motion.div style={{ y: collageY }} className="relative h-[500px] sm:h-[560px] mt-4 md:mt-0 pointer-events-auto" aria-hidden="true">
+        <motion.div style={{ y: collageY }} className="relative h-[440px] sm:h-[540px] mt-4 md:mt-0 pointer-events-auto" aria-hidden="true">
           <Print tilt={-8} className="left-[1%] top-6 w-[46%] max-w-[230px]" src="/hero/squid-games-pregame.jpg" delay={0.3} />
           <Print tilt={6} className="right-[1%] top-0 w-[46%] max-w-[230px]" src="/hero/pole.jpg" delay={0.45} />
           <Print tilt={-3} className="left-[14%] top-[190px] sm:top-[235px] w-[66%] max-w-[330px] z-[3]" src="/hero/lush-life.jpg" aspect="aspect-[4/3]" delay={0.6} />
-
-          <Sticker className="absolute -left-1 bottom-2 z-[5]" rotate={7}>
-            <div className="flex drop-shadow-[5px_6px_0_#22122e]">
-              <div className="notch-r bg-cobalt text-paper px-4 py-3 border-r-[3px] border-dashed border-sand">
-                <div className="pixel text-[9px] opacity-80">ADMIT</div>
-                <div className="poster-wide text-[22px] sm:text-[28px] leading-[.9]">THE WHOLE<br />GROUP CHAT</div>
-                <div className="flex gap-4 mt-2 poster-wide text-sm"><span>APR 2027</span><span>GA</span></div>
-              </div>
-              <div className="notch-l bg-cobalt text-paper px-2 py-3 pixel text-[9px] [writing-mode:vertical-rl] grid place-items-center">Nº 0027 · KEEP</div>
-            </div>
-          </Sticker>
 
           <Sticker className="absolute right-[4%] bottom-12 z-[6]" rotate={-14}>
             <div className="relative w-[108px] sm:w-[128px] aspect-square rounded-full border-4 border-double border-pink text-pink grid place-items-center text-center poster-wide text-[13px] leading-none bg-sand/40">
