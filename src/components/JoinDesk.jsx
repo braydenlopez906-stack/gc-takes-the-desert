@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Check, HelpCircle, Pencil, Printer } from "lucide-react";
 import { useTrip } from "../lib/trip";
+import { configProblem } from "../lib/supabase";
 import { errorCode, errorMessage } from "../lib/errors";
 import PassCard from "./PassCard";
 import { Hand, SectionHead, Script, confettiFrom, stamp, useToast } from "./ui";
@@ -64,7 +65,9 @@ function Offline() {
   return (
     <div className="bg-paper text-ink border-[3px] border-ink p-6 shadow-[12px_12px_0_#ff3a87] rotate-1">
       <p className="pixel text-xs text-pink">DATABASE NOT CONNECTED</p>
-      <p className="mt-3">The roster needs its database before anyone can join. Add <code className="bg-tape px-1">VITE_SUPABASE_URL</code> and <code className="bg-tape px-1">VITE_SUPABASE_ANON_KEY</code> (see the README), then redeploy.</p>
+      <p className="mt-3">The roster needs its database before anyone can join.</p>
+      {configProblem && <p className="mt-3 font-semibold">{configProblem}</p>}
+      <p className="mt-3 text-sm">Fix it in Vercel → Settings → Environment Variables, then Deployments → ⋯ → Redeploy.</p>
     </div>
   );
 }
